@@ -1,0 +1,12 @@
+.profile__avatar-container {
+    width: calc(120px + 26.25px + 336px);
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 930px) {
+    .profile__avatar-container {
+        width: auto;
+        flex-direction: column;
+    }
+}

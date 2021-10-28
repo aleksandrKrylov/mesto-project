@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+</head>
+<body class="page">
+
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
+
+    <main class="content">
+
+        <section class="profile">
+            <div class="profile__avatar-container">
+                <img class="profile__img" src="./images/image.jpg">
+                <div class="profile__info">
+                    <span class="profile__info-container">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button class="profile__button-edit"></button>
+                    </span>
+                    <p class="profile__activity">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__button-add"></button>
+        </section>
+
+        <section class="elements">
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like element__button-like_active"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__img" src="./images/kirill-pershin-1088404-unsplash (1).jpg" >
+                <div class="element__container">
+                    <p class="element__title">Карачаево-Черкесия</p>
+                    <button class="element__button-like"></button>
+                </div>
+            </div>
+        </section>
+
+        <div class="popup popup_opened">
+            <form class="popup__container">
+                <img class="popup__close" src="./images/close_icon.svg">
+                <p class="popup__title">Редактировать профиль</p>
+                <input class="popup__input popup__input_type_name" type="text" placeholder="Жак-Ив Кусто">
+                <input class="popup__input popup__input_type_activity" type="text" placeholder="Исследователь океана">
+                <button class="popup__button popup__button_type_save">Сохранить</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright">© 2021. Александр Крылов</p>
+    </footer>
+
+</body>
+</html>
