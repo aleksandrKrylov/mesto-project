@@ -24,7 +24,6 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
-  
 
 const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
@@ -38,6 +37,9 @@ const form = document.querySelector('.form');
 
 const inputName = document.querySelector('.form__input_type_name');
 const inputActivity = document.querySelector('.form__input_type_activity');
+
+const cards = document.querySelector('.cards');
+const cardsTemplate = document.querySelector('#card').content;
 //----------------------- Переменные --------------------------/
 
 function openAndClose () {
@@ -56,8 +58,15 @@ function saveProfileInfo () {
 
 function addCards() {
     
+    initialCards.forEach((info) => {
+        const card = cardsTemplate.querySelector('.card').cloneNode(true);
+        card.querySelector('.card__img').src = `${info.link}`;
+        card.querySelector('.card__title').textContent = `${info.name}`;
+        cards.append(card);
+    })
 }
 //----------------------- Фенкции --------------------------/
+addCards();
 
 popupClose.addEventListener('click', openAndClose);
 
