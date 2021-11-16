@@ -29,10 +29,12 @@ const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
 
 const buttonProfileEdit = document.querySelector(".profile__button-edit");
+const buttonAddCard = document.querySelector(".profile__button-add");
 
-const popup = document.querySelector('.popup');
-const popupClose = document.querySelector('.popup__close');
-const formButton = document.querySelector('.form__button');
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupCard = document.querySelector('.popup_type_card');
+
+const formButtonProfile = document.querySelector('.form__button_profile');
 const form = document.querySelector('.form');
 
 const inputName = document.querySelector('.form__input_type_name');
@@ -42,8 +44,12 @@ const cards = document.querySelector('.cards');
 const cardsTemplate = document.querySelector('#card').content;
 //----------------------- Переменные --------------------------/
 
-function openAndClose () {
-    popup.classList.toggle('popup_opened');
+function openPopup (popup) {
+    popup.classList.add('popup_opened');
+}
+
+function closePopup (popup) {
+    popup.classList.remove('popup_opened');
 }
 
 function infoProfile () {
@@ -68,17 +74,31 @@ function addCards() {
 //----------------------- Фенкции --------------------------/
 addCards();
 
-popupClose.addEventListener('click', openAndClose);
-
-form.addEventListener('submit', (event) => {event.preventDefault();})
-
 buttonProfileEdit.addEventListener('click', () => {
-    openAndClose();
     infoProfile();
+    openPopup(popupProfile);
 });
 
-formButton.addEventListener('click', () => {
-    saveProfileInfo();
-    openAndClose()
+popupProfile.querySelector('.popup__close').addEventListener('click', () => {
+    closePopup(popupProfile)
 });
+
+formButtonProfile.addEventListener('click', () => {
+    saveProfileInfo();
+    closePopup(popupProfile)
+});
+
+
+buttonAddCard.addEventListener('click', () => {
+    openPopup(popupCard);
+});
+
+popupCard.querySelector('.popup__close').addEventListener('click', () => {
+    closePopup(popupCard)
+});
+
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+})
 //----------------------- Обработчики события --------------------------/
