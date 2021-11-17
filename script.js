@@ -68,9 +68,12 @@ function saveProfileInfo () {
     profileActivity.textContent = inputActivity.value;
 }
 
-function toggleLike(card) {
+function addEventCard(card) {
     card.querySelector('.card__button-like').addEventListener('click', (evt) => {
         evt.target.classList.toggle('card__button-like_active')
+    })
+    card.querySelector('.card__button-delete').addEventListener('click', (evt) => {
+        evt.target.parentNode.remove();
     })
 }
 
@@ -80,7 +83,7 @@ function addCards() {
         card.querySelector('.card__img').src = `${data.link}`;
         card.querySelector('.card__title').textContent = `${data.name}`;
         cards.append(card);
-        toggleLike(card);
+        addEventCard(card);
     })
 }
 
@@ -89,7 +92,7 @@ function addCard(link, title) {
         card.querySelector('.card__img').src = `${link}`;
         card.querySelector('.card__title').textContent = `${title}`;
         cards.append(card);
-        toggleLike(card);
+        addEventCard(card);
 }
 //----------------------- Фенкции --------------------------/
 addCards();
