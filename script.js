@@ -46,7 +46,7 @@ const inputLink = document.querySelector(".form__input_type_link");
 
 const cards = document.querySelector('.cards');
 const cardsTemplate = document.querySelector('#card').content;
-
+//card__button-like_active
 
 //----------------------- Переменные --------------------------/
 
@@ -68,12 +68,19 @@ function saveProfileInfo () {
     profileActivity.textContent = inputActivity.value;
 }
 
+function toggleLike(card) {
+    card.querySelector('.card__button-like').addEventListener('click', (evt) => {
+        evt.target.classList.toggle('card__button-like_active')
+    })
+}
+
 function addCards() {
     initialCards.forEach((data) => {
         const card = cardsTemplate.querySelector('.card').cloneNode(true);
         card.querySelector('.card__img').src = `${data.link}`;
         card.querySelector('.card__title').textContent = `${data.name}`;
         cards.append(card);
+        toggleLike(card);
     })
 }
 
@@ -82,6 +89,7 @@ function addCard(link, title) {
         card.querySelector('.card__img').src = `${link}`;
         card.querySelector('.card__title').textContent = `${title}`;
         cards.append(card);
+        toggleLike(card);
 }
 //----------------------- Фенкции --------------------------/
 addCards();
