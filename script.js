@@ -34,14 +34,20 @@ const buttonAddCard = document.querySelector(".profile__button-add");
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
 
-const formButtonProfile = document.querySelector('.form__button_profile');
-const form = document.querySelector('.form');
+const buttonFormProfile = document.querySelector('.form__button_profile');
+const buttonFormCardAdd = document.querySelector('.form__button_card-add');
+const formProfile = document.querySelector('.form_type_profile');
+const formCard = document.querySelector(".form_type_card");
 
 const inputName = document.querySelector('.form__input_type_name');
 const inputActivity = document.querySelector('.form__input_type_activity');
+const inputTitle = document.querySelector(".form__input_type_title");
+const inputLink = document.querySelector(".form__input_type_link");
 
 const cards = document.querySelector('.cards');
 const cardsTemplate = document.querySelector('#card').content;
+
+
 //----------------------- Переменные --------------------------/
 
 function openPopup (popup) {
@@ -63,13 +69,19 @@ function saveProfileInfo () {
 }
 
 function addCards() {
-    
-    initialCards.forEach((info) => {
+    initialCards.forEach((data) => {
         const card = cardsTemplate.querySelector('.card').cloneNode(true);
-        card.querySelector('.card__img').src = `${info.link}`;
-        card.querySelector('.card__title').textContent = `${info.name}`;
+        card.querySelector('.card__img').src = `${data.link}`;
+        card.querySelector('.card__title').textContent = `${data.name}`;
         cards.append(card);
     })
+}
+
+function addCard(link, title) {
+        const card = cardsTemplate.querySelector('.card').cloneNode(true);
+        card.querySelector('.card__img').src = `${link}`;
+        card.querySelector('.card__title').textContent = `${title}`;
+        cards.append(card);
 }
 //----------------------- Фенкции --------------------------/
 addCards();
@@ -80,25 +92,33 @@ buttonProfileEdit.addEventListener('click', () => {
 });
 
 popupProfile.querySelector('.popup__close').addEventListener('click', () => {
-    closePopup(popupProfile)
+    closePopup(popupProfile);
 });
 
-formButtonProfile.addEventListener('click', () => {
+buttonFormProfile.addEventListener('click', () => {
     saveProfileInfo();
-    closePopup(popupProfile)
+    closePopup(popupProfile);
 });
-
 
 buttonAddCard.addEventListener('click', () => {
+    inputTitle.value = "";
+    inputLink.value = "";
     openPopup(popupCard);
 });
 
 popupCard.querySelector('.popup__close').addEventListener('click', () => {
-    closePopup(popupCard)
+    closePopup(popupCard);
 });
 
+buttonFormCardAdd.addEventListener('click', () => {
+    addCard(inputLink.value,inputTitle.value);
+    closePopup(popupCard);
+})
 
-form.addEventListener('submit', (event) => {
+formProfile.addEventListener('submit', (event) => {
+    event.preventDefault();
+})
+formCard.addEventListener('submit', (event) => {
     event.preventDefault();
 })
 //----------------------- Обработчики события --------------------------/
