@@ -40,6 +40,11 @@
 @import url("../blocks/form/__button/form__button.css");
 /*---------------------- form ----------------------*/
 
+@import url("../blocks/enlarged-view/enlarged-view.css");
+@import url("../blocks/enlarged-view/__img/enlarged-view__img.css");
+@import url("../blocks/enlarged-view/__title/enlarged-img__title.css");
+/*---------------------- enlarged-view ----------------------*/
+
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 /*---------------------- footer ----------------------*/
