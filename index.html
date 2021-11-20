@@ -33,7 +33,9 @@
             <template id="card">
                 <div class="card"> 
                     <button class="card__button-delete"></button>
-                    <img class="card__img" alt="Добавленные фото пользователя">
+                    <div class="card__img-container">
+                      <img class="card__img" src="" alt="">
+                    </div>
                     <div class="card__container">
                         <h2 class="card__title"></h2>
                         <button class="card__button-like" type="button"></button>
@@ -41,6 +43,11 @@
                 </div>
             </template>
         </section>
+
+        <footer class="footer">
+            <p class="footer__copyright">© 2021. Александр Крылов</p>
+        </footer>
+
     </main>
 
     <div class="popup popup_type_profile">
@@ -60,8 +67,8 @@
             <button class="popup__close"></button>
             <form class="form form_type_card" name="edit-info">
                 <h3 class="form__title">Новое место</h3>
-                <input class="form__input form__input_type_title" name="name" type="text" placeholder="Название">
-                <input class="form__input form__input_type_link" name="activity" type="text" placeholder="Ссылка на картинку">
+                <input class="form__input form__input_type_title" name="name" type="text" required placeholder="Название">
+                <input class="form__input form__input_type_link" name="activity" type="url" required placeholder="Ссылка на картинку">
                 <button class="form__button form__button_card-add" type="submit">Создать</button>
             </form>
         </div>
@@ -75,9 +82,7 @@
         </figure> 
     </div>
 
-    <footer class="footer">
-        <p class="footer__copyright">© 2021. Александр Крылов</p>
-    </footer>
+    <script src="./pages/initial-сards.js"></script>
     <script src="./pages/script.js"></script>
 </body>
 </html>
