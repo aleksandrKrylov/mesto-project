@@ -65,27 +65,27 @@ function createCard(title, link) {
     cardButtonDelete.closest(".card").remove();
   });
   cardImage.addEventListener("click", () => { // Открыть Popup для карточки
-    enlargedViewImage.src = cardImage.src;
-    enlargedViewImage.alt = cardTitle.textContent;
-    popupImageCaption.textContent = cardTitle.textContent;
+    enlargedViewImage.src = link;
+    enlargedViewImage.alt = title;
+    popupImageCaption.textContent = title;
     openPopup(popupImage);
   });
   return card;
 }
 
 function addCards() {
-  initialCards.forEach((CardData) => {
-    return cardsСontainer.append(createCard(CardData.name, CardData.link));
+  initialCards.forEach((cardData) => {
+    cardsСontainer.append(createCard(cardData.name, cardData.link));
   });
 }
 
 function addCard(title, link) {
-  cardsСontainer.append(createCard(title, link));
+  cardsСontainer.prepend(createCard(title, link));
   formCard.reset();
   closePopup(popupCard);
 }
 
-addCards(initialCards.name, initialCards.link);
+addCards();
 // Функции для карточек
 
 buttonProfileEdit.addEventListener("click", () => {
