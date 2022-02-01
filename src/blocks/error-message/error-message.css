@@ -1,0 +1,13 @@
+.error-message {
+    margin-bottom: 13px;
+    min-height: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+}
+
+.error-message:last-of-type {
+    margin-bottom: 31px;
+}

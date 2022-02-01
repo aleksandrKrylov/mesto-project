@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
 </head>
 <body class="page">
 
     <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип"> 
     </header>
 
     <main class="content">
 
         <section class="profile">
             <div class="profile__avatar-container">
-                <img class="profile__img" src="./images/image.jpg" alt="Аватарка пользователя">
+                <img class="profile__img" src="<%=require('./images/image.jpg')%>" alt="Аватарка пользователя">
                 <div class="profile__info">
                     <div class="profile__info-container">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -33,9 +32,7 @@
             <template id="card">
                 <div class="card"> 
                     <button class="card__button-delete"></button>
-                    <div class="card__img-container">
-                      <img class="card__img" src="" alt="">
-                    </div>
+                    <img class="card__img" alt="Добавленные фото пользователя">
                     <div class="card__container">
                         <h2 class="card__title"></h2>
                         <button class="card__button-like" type="button"></button>
@@ -43,20 +40,17 @@
                 </div>
             </template>
         </section>
-
-        <footer class="footer">
-            <p class="footer__copyright">© 2021. Александр Крылов</p>
-        </footer>
-
     </main>
-
+    
     <div class="popup popup_type_profile">
         <div class="popup__container">
             <button class="popup__close"></button>
-            <form class="form form_type_profile" name="edit-info">
+            <form class="form form_type_profile" name="edit-info" novalidate>
                 <h3 class="form__title">Редактировать профиль</h3>
-                <input class="form__input form__input_type_name" name="name" type="text" placeholder="Имя">
-                <input class="form__input form__input_type_activity" name="activity" type="text" placeholder="О себе">
+                <input class="form__input form__input_type_name" id="name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+                <span class="error error-message" id="error-name"></span>
+                <input class="form__input form__input_type_activity" id="activity" name="activity" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
+                <span class="error-message" id="error-activity"></span>
                 <button class="form__button form__button_profile" type="submit">Сохранить</button>
             </form>
         </div>
@@ -65,10 +59,12 @@
     <div class="popup popup_type_card">
         <div class="popup__container">
             <button class="popup__close"></button>
-            <form class="form form_type_card" name="edit-info">
+            <form class="form form_type_card" name="edit-info" novalidate>
                 <h3 class="form__title">Новое место</h3>
-                <input class="form__input form__input_type_title" name="name" type="text" required placeholder="Название">
-                <input class="form__input form__input_type_link" name="activity" type="url" required placeholder="Ссылка на картинку">
+                <input class="form__input form__input_type_title" id="title" name="name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+                <span class="error error-message" id='error-title'></span>
+                <input class="form__input form__input_type_link" id="link-img" name="activity" type="url" placeholder="Ссылка на картинку" required>
+                <span class="error error-message" id="error-link-img"></span>
                 <button class="form__button form__button_card-add" type="submit">Создать</button>
             </form>
         </div>
@@ -82,7 +78,8 @@
         </figure> 
     </div>
 
-    <script src="./pages/initial-сards.js"></script>
-    <script src="./pages/script.js"></script>
+    <footer class="footer">
+        <p class="footer__copyright">© 2021. Александр Крылов</p>
+    </footer>
 </body>
 </html>
