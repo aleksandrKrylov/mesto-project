@@ -1,4 +1,3 @@
-
 function showInputError(inputElement, inputInvalidClass, errorElement, errorMessage) {
     inputElement.classList.add(inputInvalidClass);
     errorElement.textContent = errorMessage;
