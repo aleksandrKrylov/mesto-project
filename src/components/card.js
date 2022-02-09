@@ -1,6 +1,6 @@
-const enlargedViewImg = document.querySelector(".enlarged-view__img");
-const figcaption = document.querySelector(".enlarged-view__title");
-const popupImg = document.querySelector(".popup_type_img");
+import { openPopup } from './utils.js';
+import { enlargedViewImg, figcaption, popupImg } from "./constants.js";
+
 
 function handlePopupImgClick(card) {
     card.querySelector(".card__img").addEventListener("click", (evt) => { // Открыть Popup для карточки
@@ -31,16 +31,11 @@ function createCard({name, link, likes, _id, owner}, currentUserId, handleLikeCl
     if (isLiked) {
         likeElement.classList.add('card__button-like_active');
     }
-    likeElement.addEventListener('click', () => {
-        handleLikeClick(cardElement, _id, isLiked);
-        isLiked = !isLiked;
-        likeElement.classList.toggle('card__button-like_active');
-    });
+    likeElement.addEventListener('click', () =>handleLikeClick(likeCounterElement, likeElement, _id));
 
     deleteElement.addEventListener('click', () => handleDeleteClick(cardElement, _id));
     handlePopupImgClick(cardElement)
     return cardElement;
   };
 
-import { openPopup } from './utils.js';
 export { createCard };

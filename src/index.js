@@ -1,37 +1,28 @@
 import './pages/index.css'; 
-
-const buttonProfileEdit = document.querySelector(".profile__button-edit");
-const formProfile = document.querySelector(".form_type_profile");
-const popupProfile = document.querySelector(".popup_type_profile");
-const userName = document.querySelector(".profile__name");
-const userAbout = document.querySelector(".profile__activity");
-const inputuserName = document.querySelector(".form__input_type_name");
-const inputuserAbou = document.querySelector(".form__input_type_activity");
-
-const buttonAddCard = document.querySelector(".profile__button-add");
-const formCardAdd = document.querySelector(".form_type_card");
-const popupCard = document.querySelector(".popup_type_card");
-const inputTitle = document.querySelector(".form__input_type_title");
-const inputLink = document.querySelector(".form__input_type_link");
-const buttonFormCardAdd = document.querySelector(".form__button_card-add");
-
-const profileAvatar = document.querySelector(".profile__avatar-overlay");
-const popupAvatar = document.querySelector(".popup_type_avatar");
-const imgAvatar = document.querySelector(".profile__img");
-const inputLinkAvatar = document.querySelector(".form__input_type_link-avatar");
-const formAvatar = document.querySelector(".form_type_avatar");
-const formButtonAvatar = document.querySelector(".form__button_avatar");
-
-const popups = document.querySelectorAll('.popup')
-const cardsСontainer = document.querySelector(".cards");
-const validationConfig = {
-    formSelector: ".form",
-    inputSelector: ".form__input", 
-    inputInvalidClass: "form__input_validation", 
-    buttonSelector: ".form__button",
-    buttonDisabledClass: "form__button_validation"
-};
-
+import {
+  buttonProfileEdit,
+  formProfile,
+  popupProfile,
+  userName, 
+  userAbout, 
+  inputuserName, 
+  inputuserAbou,
+  buttonAddCard, 
+  formCardAdd, 
+  popupCard,
+  inputTitle, 
+  inputLink, 
+  buttonFormCardAdd,
+  profileAvatar, 
+  popupAvatar, 
+  imgAvatar, 
+  inputLinkAvatar, 
+  formAvatar, 
+  formButtonAvatar, 
+  popups, 
+  cardsСontainer, 
+  validationConfig
+} from "./components/constants.js"
 import { openPopup,  closePopup } from './components/utils.js';
 import { saveProfileInfo, renderLoading } from './components/modal.js';
 import { enableValidation, disabledButton } from './components/validate.js';
@@ -40,19 +31,21 @@ import { getAppInfo, addLike, deleteLike, addCard, deleteCard, updateAvatar } fr
 
 enableValidation(validationConfig);
 
-function handleCardLike(cardElement, cardId, isLiked) {
-  if (isLiked) {
+function handleLikeClick(likeCounterElement, likeElement, cardId) {
+  if (likeElement.classList.contains('card__button-like_active')) {
     deleteLike(cardId)
       .then((res) => {
-        cardElement.querySelector(".card__counter-like").textContent = res.likes.length.toString();
+        likeCounterElement.textContent = res.likes.length;
+        likeElement.classList.toggle('card__button-like_active');
       })
       .catch(err => console.log(err));
   } else {
     addLike(cardId)
-      .then((res) => {
-        cardElement.querySelector(".card__counter-like").textContent = res.likes.length.toString();
-      })
-      .catch(err => console.log(err));
+    .then((res) => {
+      likeCounterElement.textContent = res.likes.length;
+      likeElement.classList.toggle('card__button-like_active');
+    })
+    .catch(err => console.log(err));
   }
 };
 
@@ -68,36 +61,35 @@ function handleCardDelete(cardElement, cardId) {
 getAppInfo()
   .then(([user, cards]) => {
     cards.forEach(card => {
-      cardsСontainer.prepend(createCard(card, user._id, handleCardLike,  handleCardDelete));
+      cardsСontainer.append(createCard(card, user._id, handleLikeClick,  handleCardDelete));
     })
     imgAvatar.style.backgroundImage = `url(${user.avatar})`;
     userName.textContent = user.name;
     userAbout.textContent = user.about;
     inputuserName.value = user.name;
     inputuserAbou.value = user.about;
-    enableValidation(validationConfig);
   })
   .catch(err => console.log(err));
 
 buttonProfileEdit.addEventListener("click", () => openPopup(popupProfile));
 profileAvatar.addEventListener("click", () => openPopup(popupAvatar));
-buttonAddCard.addEventListener("click", () => {openPopup(popupCard)});
+buttonAddCard.addEventListener("click", () => openPopup(popupCard));
 
 formProfile.addEventListener("submit", () => saveProfileInfo(inputuserName, inputuserAbou, userName, userAbout));
 
 formCardAdd.addEventListener("submit", () => {
-  renderLoading(true, buttonFormCardAdd)
+  renderLoading(true, buttonFormCardAdd);
   addCard(inputTitle.value, inputLink.value)
     .then((card) => {
-      cardsСontainer.append(createCard(card, card.owner._id, handleCardLike, handleCardDelete));
+      cardsСontainer.prepend(createCard(card, card.owner._id, handleLikeClick, handleCardDelete));
+      inputTitle.value = "";
+      inputLink.value = "";
+      closePopup(popupCard);
+      disabledButton(buttonFormCardAdd, validationConfig.buttonDisabledClass);
     })
     .catch(err => console.log(err))
     .finally (() => {
       renderLoading(false, buttonFormCardAdd);
-      closePopup(popupCard);
-      inputTitle.value = "";
-      inputLink.value = "";
-      disabledButton(buttonFormCardAdd, validationConfig.buttonDisabledClass);
     });
 })
 
@@ -113,12 +105,16 @@ popups.forEach((popup) => {
 });
 
 formAvatar.addEventListener("submit", () => {
+  renderLoading(true, formButtonAvatar);
   updateAvatar(inputLinkAvatar.value)
     .then((user) => {
       imgAvatar.style.backgroundImage = `url(${user.avatar})`;
       inputLinkAvatar.value = "";
       disabledButton(formButtonAvatar, validationConfig.buttonDisabledClass)
+      closePopup(popupAvatar);
     })
-    .catch(err => console.log(err));
-  closePopup(popupAvatar);
+    .catch(err => console.log(err))
+    .finally (() => {
+      renderLoading(false, buttonFormCardAdd);
+    });
 });
