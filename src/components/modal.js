@@ -1,3 +1,4 @@
+import { popupProfile } from './constants.js';
 import { closePopup } from './utils.js';
 import { editingProfile } from './api.js';
 import { buttonProfile } from './constants';
@@ -17,7 +18,7 @@ function saveProfileInfo (inputuserName,  inputuserAbou, userName, userAbou) {
       .then((user) => {
         userName.textContent = user.name;
         userAbou.textContent = user.about;
-        closePopup(document.querySelector(".popup_type_profile"));
+        closePopup(popupProfile);
         })
         .catch(err => console.log(err))
         .finally (() => {            

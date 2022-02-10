@@ -1,4 +1,4 @@
-import './pages/index.css'; 
+import '../pages/index.css'; 
 import {
   buttonProfileEdit,
   formProfile,
@@ -22,12 +22,12 @@ import {
   popups, 
   cardsСontainer, 
   validationConfig
-} from "./components/constants.js"
-import { openPopup,  closePopup } from './components/utils.js';
-import { saveProfileInfo, renderLoading } from './components/modal.js';
-import { enableValidation, disabledButton } from './components/validate.js';
-import { createCard } from './components/card.js';
-import { getAppInfo, addLike, deleteLike, addCard, deleteCard, updateAvatar } from './components/api.js';
+} from "./constants.js"
+import { openPopup,  closePopup } from './utils.js';
+import { saveProfileInfo, renderLoading } from './modal.js';
+import { enableValidation, disabledButton } from './validate.js';
+import { createCard } from './card.js';
+import { getAppInfo, addLike, deleteLike, addCard, deleteCard, updateAvatar } from './api.js';
 
 enableValidation(validationConfig);
 
@@ -74,7 +74,6 @@ getAppInfo()
 buttonProfileEdit.addEventListener("click", () => openPopup(popupProfile));
 profileAvatar.addEventListener("click", () => openPopup(popupAvatar));
 buttonAddCard.addEventListener("click", () => openPopup(popupCard));
-
 formProfile.addEventListener("submit", () => saveProfileInfo(inputuserName, inputuserAbou, userName, userAbout));
 
 formCardAdd.addEventListener("submit", () => {
@@ -115,6 +114,6 @@ formAvatar.addEventListener("submit", () => {
     })
     .catch(err => console.log(err))
     .finally (() => {
-      renderLoading(false, buttonFormCardAdd);
+      renderLoading(false, formButtonAvatar);
     });
 });
