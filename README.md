@@ -13,4 +13,4 @@ ES6, Babel, CSS3, HTML5, Webpack, BEM
 - Запустить сборку production-билда - `npm run build`
 
 ## Ссылка на проект:
-https://aleksandrkrylov.github.io/mesto-project/index.html
+https://aleksandrkrylov.github.io/mesto-project/
